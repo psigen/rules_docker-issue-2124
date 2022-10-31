@@ -36,7 +36,24 @@ hello there!
 [-e=foo=A, -e=bar=B, --beep]
 ```
 
-Note the following problems with this output:
+## Explanation
+
+This reproduction uses four distinct flags that should be visible in different places.
+
+- `-e=foo=A` - this should be included in the image entrypoint and not passed by `bazel run`
+- `-e=bar=B` - this should be included in the image entrypoint and not passed by `bazel run`
+- `-e=baz=C` - this should be passed by `bazel run` to `docker run`
+- `--beep` - this should be passed by `bazel run` to the application
+
+We would therefore expect the following output from our debugging:
+
+```
+incremental_load.sh ARGS: /usr/bin/docker run -i --rm --network=host -e=baz=C bazel:image --beep
+hello there!
+[-e=foo=A, -e=bar=B, --beep]
+```
+
+Note the following problems with the actual output:
 
 We can see that the original entrypoint includes all the flags necessary to run the command.
 I.e. the entrypoint and command already include the "-e=foo=A" and "-e=bar=B" flags.
