@@ -14,8 +14,10 @@ java_binary(
 java_image(
     name = "image",
     args = [
-        "--foo",
-        "--bar",
+        # These flags are compatible with docker, but are very distinct.
+        # This lets us to trace the incorrect flags all the way to execution.
+        "-e=foo=A",
+        "-e=bar=B",
     ],
     base = "@java//image",
     main_class = "demo.Main",
