@@ -1,0 +1,23 @@
+load("@io_bazel_rules_docker//java:image.bzl", "java_image")
+
+java_library(
+    name = "lib",
+    srcs = ["Main.java"],
+)
+
+java_binary(
+    name = "bin",
+    main_class = "demo.Main",
+    runtime_deps = [":lib"],
+)
+
+java_image(
+    name = "image",
+    args = [
+        "--stuff",
+        "--bar",
+    ],
+    base = "@java//image",
+    main_class = "demo.Main",
+    runtime_deps = [":lib"],
+)
