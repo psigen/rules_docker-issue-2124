@@ -1,8 +1,8 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-rules_docker_sha = "f3a6901fe69b9a17ff94a08446e2d4950ffcd260137d9d4c93776f222bacaa22"
+rules_docker_sha = "d6bdd1790f839cbb111be4e66315a0cc7f280637111e32bc2e103e2602b4c6ad"
 
-rules_docker_tag = "224f37b3569233c9df77cceba56280560001230d"
+rules_docker_tag = "b73960f1f98a2d3a515d79ce97ad7f920f562b6d"
 
 http_archive(
     name = "io_bazel_rules_docker",
