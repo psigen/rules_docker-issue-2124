@@ -14,7 +14,7 @@ java_binary(
 java_image(
     name = "image",
     args = [
-        "--stuff",
+        "--foo",
         "--bar",
     ],
     base = "@java//image",
