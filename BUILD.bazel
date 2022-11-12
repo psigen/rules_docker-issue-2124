@@ -23,3 +23,23 @@ java_image(
     main_class = "demo.Main",
     runtime_deps = [":lib"],
 )
+
+java_image(
+    name = "image2",
+    args = [
+        # These flags are compatible with docker, but are very distinct.
+        # This lets us to trace the incorrect flags all the way to execution.
+        "--spring.config.location=/app/config/",
+    ],
+    base = "@java//image",
+    jvm_flags = [
+        "-Dparam1=value1",
+        "-Dparam2=value2",
+    ],
+    main_class = "demo.Main",
+    tags = [
+        "apple",
+        "bees",
+    ],
+    runtime_deps = [":lib"],
+)
