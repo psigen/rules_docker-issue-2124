@@ -26,11 +26,7 @@ java_image(
 
 java_image(
     name = "image2",
-    args = [
-        # These flags are compatible with docker, but are very distinct.
-        # This lets us to trace the incorrect flags all the way to execution.
-        "--spring.config.location=/app/config/",
-    ],
+    args = ["--spring.config.location=/app/config/"],
     base = "@java//image",
     jvm_flags = [
         "-Dparam1=value1",
